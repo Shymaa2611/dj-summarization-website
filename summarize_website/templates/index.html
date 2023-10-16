@@ -1,0 +1,45 @@
+{%load static%}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+<!DOCTYPE html>
+<html>
+<header>
+    <style>
+    body{
+      background-color:rgb(48, 45, 45);
+    }
+
+    </style>
+</header>
+<body>
+  
+
+
+
+<form method="post">
+    {%csrf_token%}
+    
+    <label style="color: palevioletred; font-size: 45px; margin-left:300px ;margin-top: 50px;"> Welcome Summarization Website</label>
+    <div style="width:500px ;height: 70px;margin-top: 50px; margin-left: 400px;">
+        {% bootstrap_field form.text %}
+    </div>
+    <div>
+        <button style="color: black; background-color: rgb(219, 157, 171);border-radius:20px ;width: 200px;height:70px ; margin-top: 230px; margin-left:550px ; font-size: 25px;" type="submit">Summarize</button>
+    </div>
+    <label>Text After Summarization</label>
+    <div style="width:500px ;height: 70px;margin-top: 50px; margin-left: 400px;">
+        <p>
+            {{summarize_data}}
+        </p>
+    </div>
+    
+</form>
+    
+
+
+
+</body>
+
+</html>
