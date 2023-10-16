@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from transformers import pipeline
 from .forms import textForm
+from .models import summarize_data
 
 def summarize(text):
     summarizer = pipeline("summarization")
@@ -14,7 +15,9 @@ def index(request):
         if form.is_valid():
             form.save()
             text=form.cleaned_data['text']
-            summarize_data=summarize(text)
+            summarize_text=summarize(text)
+            #summarize_data.objects.filter(text=text).delete()
+            
     else:
         form=textForm()
-    return render(request,'index.html',{'form':form,'summarize':summarize_data})
+    return render(request,'index.html',{'form':form,'summarize':summarize_text})
